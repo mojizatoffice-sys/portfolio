@@ -85,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
         <a
           href={PERSONAL_INFO.resumeUrl}
-          target="_blank"
+          target="_self"
           rel="noreferrer"
           className="hidden sm:flex items-center gap-1.5 bg-[#E50914] hover:bg-[#F6121D] text-white text-xs md:text-sm font-semibold px-3 py-1.5 rounded transition"
         >
