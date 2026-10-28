@@ -73,7 +73,7 @@ export const HeroBillboard: React.FC<HeroBillboardProps> = ({
           {item.githubUrl && (
             <a
               href={item.githubUrl}
-              target="_blank"
+              target="_self"
               rel="noreferrer"
               className="flex items-center gap-2 bg-[#E50914] hover:bg-[#F6121D] text-white font-semibold px-5 py-2.5 rounded text-sm md:text-base transition"
             >

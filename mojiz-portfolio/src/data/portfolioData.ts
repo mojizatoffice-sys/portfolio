@@ -88,8 +88,8 @@ export const PERSONAL_INFO: PersonalInfo = {
   name: "Mohammad Mojiz Abbas",
   shortName: "Mojiz",
   title: "B.Tech CSD Student · Python & Full-Stack Developer",
-  tagline: "Third-year CS student who ships — offline AI, FastAPI backends, and the odd weekend website.",
-  bio: "B.Tech Computer Science & Design student in Ghaziabad, currently in my third year. I build with Python first and reach for FastAPI, React or whatever the problem actually needs. Most of what I know came from building things that broke and then fixing them — MindVault, my offline AI knowledge base, is the current one. I'm also building in public while preparing for a Master's in Germany.",
+  tagline: "Third-year CS student who ships — React Native, FastAPI backends, and local AI that runs offline.",
+  bio: "B.Tech Computer Science & Design student in Ghaziabad, currently in my third year. I build with Python first and reach for FastAPI, React or whatever the problem actually needs. My major project is SkillSwap AI — a React Native and FastAPI platform where people trade skills instead of buying courses. When I'm not on that, I'm usually deep in MindVault, my offline AI knowledge base, or building in public while preparing for a Master's in Germany.",
   location: "Ghaziabad, Uttar Pradesh, India",
   phone: "+91-8178546915",
   email: "mojiz.atoffice@gmail.com",
@@ -122,8 +122,9 @@ export const PERSONAL_INFO: PersonalInfo = {
   skillGroups: [
     { label: "Programming", items: ["Python", "C (basics)", "Java (basics)", "Kotlin"] },
     { label: "Web", items: ["React.js", "HTML", "CSS", "JavaScript", "FastAPI", "Jinja2"] },
-    { label: "Mobile / Embedded", items: ["Flutter", "Arduino (C++)"] },
-    { label: "Databases", items: ["MySQL", "MongoDB", "PostgreSQL", "SQLite", "ChromaDB"] },
+    { label: "Mobile / Embedded", items: ["React Native (Expo)", "Flutter", "Arduino (C++)"] },
+    { label: "Databases", items: ["MySQL", "MongoDB", "PostgreSQL", "Supabase", "SQLite", "ChromaDB"] },
+    { label: "Auth & Cloud", items: ["Firebase Auth", "Firebase Cloud Messaging", "Cloudinary", "JWT"] },
     { label: "AI & Tools", items: ["Ollama", "Piper TTS", "Linux", "Git", "GitHub", "Cloudinary"] },
     { label: "MS Office", items: ["Excel (VLOOKUP, Pivot Tables, Charts)", "Word", "PowerPoint"] },
   ],
@@ -147,7 +148,7 @@ export const VIEWER_PROFILES: ViewerProfile[] = [
     name: "Engineer",
     description: "Read the code: architecture, trade-offs, what broke.",
     accent: "#B20710",
-    pinFirst: ["mindvault", "home-town-hub", "blaze"],
+    pinFirst: ["skillswap-ai", "mindvault", "home-town-hub", "blaze"],
   },
   {
     id: "curious",
@@ -158,6 +159,42 @@ export const VIEWER_PROFILES: ViewerProfile[] = [
 ];
 
 /* -------------------------------- Projects -------------------------------- */
+
+const SKILLSWAP: MediaItem = {
+  id: "skillswap-ai",
+  title: "SkillSwap AI",
+  tagline: "Learn a skill by teaching the one you already have.",
+  description:
+    "Our B.Tech major project: a mobile platform where every user is both a learner and a teacher. You list skills you can teach and skills you want to learn, and the app matches you with people whose lists are the mirror of yours — I teach you Python, you teach me UI/UX. Built as a React Native app on a FastAPI bridge that verifies Firebase JWTs and syncs the verified uid straight into Supabase Postgres. The backend models the exchange properly: a user_skills junction table with a composite unique constraint on (user, skill, intent) so one person can be both TEACH and LEARN for different skills without duplicate rows.",
+  badge: "Major Project",
+  matchScore: "99% Match",
+  year: "2026",
+  durationOrMetric: "React Native · FastAPI · Team of 4",
+  thumbnailUrl:
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+  techStack: [
+    "React Native",
+    "TypeScript",
+    "Expo",
+    "FastAPI",
+    "SQLAlchemy",
+    "Supabase",
+    "PostgreSQL",
+    "Firebase Auth",
+    "Firebase Cloud Messaging",
+  ],
+  architectureBullets: [
+    "Client authenticates natively with Firebase Auth; the React Native app forwards the ID token to FastAPI.",
+    "FastAPI verifies the token with the Firebase Admin SDK and rejects expired or invalid ones with a 401 before any route logic runs.",
+    "The verified Firebase uid becomes the primary key in Supabase Postgres, so auth and relational data stay in sync without a second account system.",
+    "user_skills uses a composite unique constraint on (user, skill, intent) — the same person can offer and want the same skill without duplicate rows.",
+    "Five-table schema: users, skills, user_skills, learning_paths (JSONB roadmaps) and match_request with PENDING/ACCEPTED/REJECTED states.",
+    "Built with a 4-person team (Project Group No. 2) under faculty supervision — I own the backend API layer.",
+    "Honest status: auth, user sync, skills and user-skill endpoints are working. AI matching and roadmap generation are next.",
+  ],
+  status: "Backend API live · AI matching in progress · repo private",
+  githubUrl: "https://github.com/mojizatoffice-sys/Skill-Swap-AI",
+};
 
 const MINDVAULT: MediaItem = {
   id: "mindvault",
@@ -388,17 +425,17 @@ export const PORTFOLIO_RAILS: CategoryRail[] = [
   {
     id: "trending-projects",
     title: "Trending Now — What I'm Building",
-    items: [MINDVAULT, BLAZE, HOMETOWN_HUB, CHATTERS_SPOT, NORTHPEAK],
+    items: [SKILLSWAP, MINDVAULT, BLAZE, HOMETOWN_HUB, CHATTERS_SPOT, NORTHPEAK],
   },
   {
     id: "backend-and-ai",
     title: "Because You Work In Python",
-    items: [MINDVAULT, BLAZE, HOMETOWN_HUB, CHATTERS_SPOT],
+    items: [SKILLSWAP, MINDVAULT, BLAZE, HOMETOWN_HUB, CHATTERS_SPOT],
   },
   {
     id: "frontend",
     title: "Frontend & Interface Work",
-    items: [NORTHPEAK, THIS_SITE, HOMETOWN_HUB, CHATTERS_SPOT],
+    items: [SKILLSWAP, NORTHPEAK, THIS_SITE, HOMETOWN_HUB, CHATTERS_SPOT],
   },
   {
     id: "first-builds",
@@ -414,7 +451,7 @@ export const PORTFOLIO_RAILS: CategoryRail[] = [
 
 /* ---------------------------- Derived helpers ----------------------------- */
 
-export const HERO_FEATURED: MediaItem = MINDVAULT;
+export const HERO_FEATURED: MediaItem = SKILLSWAP;
 
 export const ALL_ITEMS: MediaItem[] = Array.from(
   new Map(PORTFOLIO_RAILS.flatMap((rail) => rail.items).map((item) => [item.id, item])).values()

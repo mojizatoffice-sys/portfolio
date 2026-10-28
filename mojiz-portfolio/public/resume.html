@@ -225,10 +225,11 @@
     </div>
     <p class="summary" id="summary">
       Motivated B.Tech Computer Science &amp; Design student with a strong foundation in software
-      development, Python, AI automation, web technologies and data handling. Proficient in MS Excel,
-      Word and PowerPoint, with strong English communication, documentation, presentation and
-      problem-solving skills. Fast learner interested in software development, AI, automation, business
-      support, research and technical operations.
+      development, Python, AI automation, web technologies and data handling. Currently building
+      SkillSwap AI, a React Native and FastAPI platform for peer-to-peer skill exchange, as my major
+      project. Proficient in MS Excel, Word and PowerPoint, with strong English communication,
+      documentation, presentation and problem-solving skills. Fast learner interested in software
+      development, AI, automation, business support, research and technical operations.
     </p>
   </div>
 </header>
@@ -256,6 +257,26 @@
   <section id="projects">
     <h2><span class="dot"></span>Projects <span class="hint">real repos &mdash; links at the bottom</span></h2>
     <div class="grid">
+
+      <article class="card">
+        <div class="card-top">
+          <h3>SkillSwap AI &mdash; Skill Exchange Platform <em>(Major Project)</em></h3>
+          <span class="match">React Native &middot; FastAPI</span>
+        </div>
+        <p class="sub">Learn a skill by teaching the one you already know.</p>
+        <ul>
+          <li>B.Tech major project (Group No. 2, 4 members, faculty-supervised): a mobile platform where every user is both learner and teacher, matched on complementary skills.</li>
+          <li>React Native (TypeScript, Expo) client authenticating natively with Firebase Auth; FastAPI verifies the ID token via the Firebase Admin SDK and returns 401 on expired or invalid tokens before any route logic runs.</li>
+          <li>Verified Firebase <code>uid</code> becomes the primary key in Supabase PostgreSQL, so authentication and relational data stay in sync without a second account system.</li>
+          <li>Five-table schema (users, skills, user_skills, learning_paths, match_request) with a composite unique constraint on (user, skill, intent) so one person can both TEACH and LEARN without duplicate rows.</li>
+          <li>REST endpoints for user sync, skill listing and user-skill management; AI matching and JSONB roadmap generation are in progress.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">React Native</span><span class="pill">TypeScript</span><span class="pill">FastAPI</span>
+          <span class="pill">SQLAlchemy</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span><span class="pill">Firebase Auth</span>
+        </div>
+        <div class="status">Backend API live &mdash; AI matching in progress</div>
+      </article>
 
       <article class="card">
         <div class="card-top">
@@ -378,11 +399,15 @@
       </div>
       <div class="skill-row">
         <div class="skill-label">Mobile / Embedded</div>
-        <div class="skill-items"><span class="pill">Flutter</span><span class="pill">Arduino (C++)</span></div>
+        <div class="skill-items"><span class="pill">React Native (Expo)</span><span class="pill">Flutter</span><span class="pill">Arduino (C++)</span></div>
       </div>
       <div class="skill-row">
         <div class="skill-label">Databases</div>
-        <div class="skill-items"><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">PostgreSQL</span><span class="pill">SQLite</span></div>
+        <div class="skill-items"><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">PostgreSQL</span><span class="pill">Supabase</span><span class="pill">SQLite</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Auth &amp; Cloud</div>
+        <div class="skill-items"><span class="pill">Firebase Auth</span><span class="pill">Firebase Cloud Messaging</span><span class="pill">Cloudinary</span></div>
       </div>
       <div class="skill-row">
         <div class="skill-label">AI &amp; Tools</div>
@@ -408,6 +433,7 @@
     <div class="two">
       <div class="plain">
         <ul>
+          <li>Major project lead on the backend for SkillSwap AI (team of 4, faculty-supervised) &mdash; owning the FastAPI auth bridge and Supabase schema.</li>
           <li>Currently exploring Android Studio and additional web development projects.</li>
           <li>Active GitHub contributor with activity in AI and Python projects.</li>
           <li>Comfortable preparing professional reports, presentations and data summaries using MS Office.</li>
