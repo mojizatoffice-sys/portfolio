@@ -263,7 +263,7 @@ const CHATTERS_SPOT: MediaItem = {
   year: "2026",
   durationOrMetric: "FastAPI · MySQL",
   thumbnailUrl:
-    "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=80",
   techStack: ["Python", "FastAPI", "Jinja2", "MySQL", "Argon2", "HTML", "CSS"],
   architectureBullets: [
     "Middleware-based auth with an explicit public-route allowlist — new routes are protected by default, which is the safe way round.",
@@ -352,7 +352,7 @@ const JAVA_PRACTICE: MediaItem = {
   year: "2026",
   durationOrMetric: "Java · Ongoing",
   thumbnailUrl:
-    "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=80",
   techStack: ["Java", "OOP"],
   architectureBullets: [
     "Program-per-concept structure so each file stays readable on its own.",
