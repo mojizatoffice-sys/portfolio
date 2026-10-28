@@ -2,8 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  /* offset anchor targets so the fixed navbar doesn't cover rail headings */
+  scroll-padding-top: 5rem;
+  /* keeps native UI (scrollbars, form controls) dark */
+  color-scheme: dark;
+}
+
 body {
-	background-color: #141414;
-	color: #fffffff;
-	overflow-x: hidden;
+  background-color: #141414;
+  color: #ffffff;
+  /* NB: no `overflow-x: hidden` here — it silently breaks `position: sticky`
+     and makes the page scroll container the wrong element. Use `overflow-x: clip`
+     if horizontal bleed ever shows up. */
+  overflow-x: clip;
+}
+
+/* Netflix-red ambient glow behind the whole page, so the dark surfaces read
+   as tinted rather than flat black. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 620px at 6% -6%, rgba(229, 9, 20, 0.34), transparent 66%),
+    radial-gradient(1000px 520px at 100% 4%, rgba(178, 7, 16, 0.26), transparent 64%),
+    radial-gradient(900px 480px at 50% 108%, rgba(229, 9, 20, 0.16), transparent 66%);
+}
+
+::selection {
+  background: #e50914;
+  color: #fff;
+}
+
+/* Thin red scrollbar (Firefox + WebKit) */
+html {
+  scrollbar-color: #b20710 #141414;
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+::-webkit-scrollbar-thumb {
+  background: #b20710;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
 }

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mohammad Mojiz Abbas — Resume</title>
+<style>
+  :root {
+    --red: #e50914;
+    --black: #141414;
+    --card: #181818;
+    --line: #2a2a2a;
+    --dim: #a3a3a3;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--black);
+    color: #fff;
+    font: 14px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 14px 32px;
+    background: linear-gradient(180deg, #000 0%, rgba(20,20,20,.92) 70%, transparent 100%);
+    backdrop-filter: blur(6px);
+  }
+  .brand {
+    color: var(--red); font-weight: 900; letter-spacing: 2px; font-size: 22px;
+    text-decoration: none;
+  }
+  .topbar nav { display: flex; gap: 18px; font-size: 13px; }
+  .topbar nav a { color: var(--dim); text-decoration: none; }
+  .topbar nav a:hover { color: #fff; }
+  .actions { display: flex; gap: 10px; align-items: center; }
+  .btn {
+    border: 0; cursor: pointer; font: inherit; font-weight: 700;
+    border-radius: 4px; padding: 9px 18px; display: inline-flex; align-items: center; gap: 7px;
+    text-decoration: none; transition: background .15s, transform .15s;
+  }
+  .btn-white { background: #fff; color: #000; }
+  .btn-white:hover { background: #d9d9d9; }
+  .btn-ghost {
+    background: rgba(109,109,110,.55); color: #fff; backdrop-filter: blur(4px);
+  }
+  .btn-ghost:hover { background: rgba(109,109,110,.8); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    padding: 34px 32px 28px;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(900px 420px at 12% -20%, rgba(229,9,20,.20), transparent 70%),
+      linear-gradient(180deg, #1b1b1b 0%, var(--black) 100%);
+  }
+  .hero-inner { max-width: 1000px; margin: 0 auto; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--dim);
+  }
+  .eyebrow::before {
+    content: ""; width: 22px; height: 2px; background: var(--red); display: inline-block;
+  }
+  h1 {
+    margin: 10px 0 6px; font-size: clamp(30px, 4.6vw, 50px); line-height: 1.04;
+    letter-spacing: -1.2px; font-weight: 900;
+  }
+  .role { color: #e8e8e8; font-size: 16px; font-weight: 600; margin: 0 0 12px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--dim); }
+  .contact a { color: #e5e5e5; text-decoration: none; border-bottom: 1px solid transparent; }
+  .contact a:hover { border-bottom-color: var(--red); }
+  .contact span.sep { color: #555; }
+  .summary {
+    margin: 18px 0 0; max-width: 76ch; color: #d6d6d6; font-size: 14.5px;
+  }
+
+  /* ---------- body ---------- */
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 32px 72px; }
+  section { padding-top: 34px; }
+  h2 {
+    font-size: 19px; margin: 0 0 14px; letter-spacing: -.2px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2 .dot { width: 4px; height: 20px; background: var(--red); border-radius: 2px; display: inline-block; }
+  h2 .hint { margin-left: auto; font-size: 11px; font-weight: 400; color: #6f6f6f; letter-spacing: .4px; }
+
+  /* ---------- cards (project "titles") ---------- */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 16px 18px; transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: #565656; transform: translateY(-2px); }
+  .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .card h3 { margin: 0; font-size: 15.5px; letter-spacing: -.1px; }
+  .match { color: #46d369; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+  .card .sub { color: #b9b9b9; font-size: 12.5px; margin: 3px 0 9px; }
+  .card ul { margin: 0; padding-left: 16px; }
+  .card li { color: #cfcfcf; font-size: 12.5px; margin-bottom: 4px; }
+  .card li::marker { color: var(--red); }
+  .stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; }
+  .pill {
+    font-size: 10.5px; color: #dcdcdc; background: #2f2f2f;
+    border-radius: 3px; padding: 2px 7px;
+  }
+  .status {
+    margin-top: 10px; font-size: 11px; color: #8f8f8f;
+    border-left: 2px solid var(--red); padding-left: 8px;
+  }
+
+  /* ---------- education ---------- */
+  .edu {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px 20px; display: grid; grid-template-columns: 1fr auto; gap: 6px 20px;
+  }
+  .edu .degree { font-weight: 700; font-size: 15.5px; }
+  .edu .school { color: #c9c9c9; font-size: 13px; }
+  .edu .when { color: var(--dim); font-size: 12.5px; text-align: right; }
+  .edu .stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; grid-column: 1 / -1; }
+  .stat {
+    background: #232323; border: 1px solid #333; border-radius: 4px;
+    padding: 5px 11px; font-size: 11.5px; color: #ddd;
+  }
+  .stat b { color: #fff; }
+  .coursework { grid-column: 1 / -1; color: #9a9a9a; font-size: 12px; margin-top: 4px; }
+
+  /* ---------- skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 28px; }
+  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: start; }
+  .skill-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.1px;
+    color: #8a8a8a; padding-top: 3px;
+  }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* ---------- extras ---------- */
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px; }
+  .plain { color: #c4c4c4; font-size: 13px; margin: 0; }
+  .plain li { margin-bottom: 5px; }
+  .plain ul { margin: 0; padding-left: 16px; }
+  .plain li::marker { color: var(--red); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .links a {
+    color: #fff; text-decoration: none; font-size: 12px;
+    border: 1px solid #3a3a3a; border-radius: 4px; padding: 6px 12px;
+  }
+  .links a:hover { border-color: var(--red); }
+
+  footer {
+    max-width: 1000px; margin: 0 auto; padding: 22px 32px 50px;
+    border-top: 1px solid var(--line); color: #6f6f6f; font-size: 11.5px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 820px) {
+    .grid, .skills, .two { grid-template-columns: 1fr; }
+    .topbar nav { display: none; }
+    .edu { grid-template-columns: 1fr; }
+    .edu .when { text-align: left; }
+    .skill-row { grid-template-columns: 1fr; gap: 3px; }
+    .topbar, .hero, .wrap { padding-left: 18px; padding-right: 18px; }
+  }
+
+  /* ---------- print: keep it a clean one-pager ---------- */
+  @media print {
+    @page { margin: 12mm; size: A4; }
+    body { background: #fff; color: #111; font-size: 10.5px; }
+    .topbar { display: none; }
+    .hero {
+      background: none; border-bottom: 2px solid var(--red);
+      padding: 0 0 10px; margin-bottom: 4px;
+    }
+    h1 { font-size: 26px; }
+    .role { color: #333; }
+    .contact, .contact a, .summary { color: #333; }
+    h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #b00710; }
+    h2 .dot, h2 .hint { display: none; }
+    .card, .edu { background: #fff; border: 1px solid #ddd; break-inside: avoid; }
+    .card h3, .card li, .card .sub { color: #111; }
+    .match { color: #1a7f37; }
+    .pill, .stat { background: #f2f2f2; border: 1px solid #ddd; color: #222; }
+    .status { color: #555; }
+    .plain, .plain li, .coursework, .skill-label { color: #333; }
+    .links a { color: #111; border-color: #ccc; }
+    section { padding-top: 14px; }
+    .wrap { padding: 0; }
+    footer { color: #666; border-color: #ddd; padding: 10px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="/">MOJIZ</a>
+  <nav>
+    <a href="#summary">Summary</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+  </nav>
+  <div class="actions">
+    <a class="btn btn-ghost" href="/">&#8592; Back to site</a>
+    <button class="btn btn-white" onclick="window.print()">Save as PDF</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Resume &middot; 2026</div>
+    <h1>Mohammad Mojiz Abbas</h1>
+    <p class="role">B.Tech Computer Science &amp; Design &middot; Python &amp; Full-Stack Developer</p>
+    <div class="contact">
+      <span>Ghaziabad, Uttar Pradesh</span><span class="sep">|</span>
+      <a href="tel:+918178546915">+91-8178546915</a><span class="sep">|</span>
+      <a href="mailto:mojiz.atoffice@gmail.com">mojiz.atoffice@gmail.com</a><span class="sep">|</span>
+      <a href="https://github.com/Ayanabbas2006" target="_blank" rel="noreferrer">github.com/Ayanabbas2006</a><span class="sep">|</span>
+      <a href="https://www.linkedin.com/in/syed-mahommad-mojiz-abbas-40582726a" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+    <p class="summary" id="summary">
+      Motivated B.Tech Computer Science &amp; Design student with a strong foundation in software
+      development, Python, AI automation, web technologies and data handling. Proficient in MS Excel,
+      Word and PowerPoint, with strong English communication, documentation, presentation and
+      problem-solving skills. Fast learner interested in software development, AI, automation, business
+      support, research and technical operations.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="education">
+    <h2><span class="dot"></span>Education</h2>
+    <div class="edu">
+      <div>
+        <div class="degree">Bachelor of Technology in Computer Science &amp; Design</div>
+        <div class="school">IMS Engineering College (IMSEC) &middot; Ghaziabad, Uttar Pradesh</div>
+      </div>
+      <div class="when">2024 &ndash; 2028<br />Expected graduation: 2027</div>
+      <div class="stats">
+        <span class="stat">CGPA <b>7.0 / 10</b></span>
+        <span class="stat">Recent SGPA <b>7.2</b></span>
+      </div>
+      <div class="coursework">
+        Relevant coursework: Data Structures, Programming, Digital Electronics, Soft Skills, AI Automations
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2><span class="dot"></span>Projects <span class="hint">real repos &mdash; links at the bottom</span></h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top">
+          <h3>MindVault &mdash; Offline AI Knowledge Base</h3>
+          <span class="match">Python &middot; RAG</span>
+        </div>
+        <p class="sub">Chat with your own PDFs; nothing leaves the machine.</p>
+        <ul>
+          <li>FastAPI backend: <code>/upload</code> and <code>/chat</code>, with a file-type allowlist for PDF, TXT and Markdown.</li>
+          <li>Chunks text at 800 chars with 150 overlap, embeds via <code>nomic-embed-text</code> through Ollama, stores in a persistent ChromaDB collection using cosine distance.</li>
+          <li>Retrieves the 4 nearest chunks and answers strictly from that context, returning source filenames with every response.</li>
+          <li>Fully local inference with Llama 3.2 &mdash; no API keys, no cloud calls.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">Ollama</span>
+          <span class="pill">ChromaDB</span><span class="pill">Llama 3.2</span><span class="pill">pypdf</span>
+        </div>
+        <div class="status">v0.1 &mdash; backend working, chat UI in progress</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Blaze &mdash; Offline Voice AI Assistant</h3>
+          <span class="match">Python &middot; AI</span>
+        </div>
+        <p class="sub">Voice assistant that also controls hardware.</p>
+        <ul>
+          <li>Fully offline voice-enabled agent using Python, Ollama (Llama 3.2) and FastAPI with a modular architecture.</li>
+          <li>Natural conversation, persistent memory, command handling and real-time streaming responses.</li>
+          <li>RGB light control integrated over Arduino and FastAPI.</li>
+          <li>Piper TTS for voice output &mdash; local AI deployment end to end.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">Ollama</span><span class="pill">FastAPI</span>
+          <span class="pill">Piper TTS</span><span class="pill">Arduino</span>
+        </div>
+        <div class="status">Working prototype</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Hometown Hub &mdash; Community Platform</h3>
+          <span class="match">FastAPI &middot; SQL</span>
+        </div>
+        <p class="sub">Connecting people from the same community and area.</p>
+        <ul>
+          <li>FastAPI with Jinja2 templates, SQLAlchemy over PostgreSQL, split into routers by concern.</li>
+          <li>bcrypt password hashing and email OTP verification via SendGrid before an account is trusted.</li>
+          <li>Cloudinary for profile photos; Pydantic schemas prevent the password hash from ever reaching a response.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">FastAPI</span><span class="pill">PostgreSQL</span><span class="pill">SQLAlchemy</span>
+          <span class="pill">bcrypt</span><span class="pill">SendGrid</span><span class="pill">Cloudinary</span>
+        </div>
+        <div class="status">Auth and registration complete &mdash; feed in progress</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Chatter's Spot &mdash; Social Web App</h3>
+          <span class="match">FastAPI &middot; MySQL</span>
+        </div>
+        <p class="sub">A small social app with a real login wall.</p>
+        <ul>
+          <li>Cookie-session auth enforced by middleware with an explicit public-route allowlist &mdash; new routes are protected by default.</li>
+          <li>Argon2 password hashing; user records in MySQL with UTF8MB4 collation.</li>
+          <li>Jinja2 templates for the home, login and register pages.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">FastAPI</span><span class="pill">MySQL</span><span class="pill">Argon2</span>
+          <span class="pill">Jinja2</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>NorthPeak Digital &mdash; Agency Landing Page</h3>
+          <span class="match">HTML &middot; CSS &middot; JS</span>
+        </div>
+        <p class="sub">Responsive one-pager, no framework, no build step.</p>
+        <ul>
+          <li>Semantic HTML5 with CSS custom properties, Flexbox and Grid; tuned for 360px, 768px and 1440px.</li>
+          <li>Vanilla ES6 mobile navigation and contact-form validation for empty fields, email format and minimum message length.</li>
+          <li>Deployed on Vercel.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span><span class="pill">Vercel</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Desktop Utilities</h3>
+          <span class="match">Python &middot; Tkinter</span>
+        </div>
+        <p class="sub">Calculator and a 7-segment display clock.</p>
+        <ul>
+          <li>Calculator application built with Python Tkinter, kept deliberately short.</li>
+          <li>7-Segment Display Clock UI built in Python with Tkinter, drawing each digit as real segments.</li>
+          <li>Java Practice repository covering OOP, collections and problem-solving exercises.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">Tkinter</span><span class="pill">Java</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2><span class="dot"></span>Technical &amp; Professional Skills</h2>
+    <div class="skills">
+      <div class="skill-row">
+        <div class="skill-label">Programming</div>
+        <div class="skill-items"><span class="pill">Python</span><span class="pill">C (basics)</span><span class="pill">Java (basics)</span><span class="pill">Kotlin</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Web</div>
+        <div class="skill-items"><span class="pill">React.js</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">FastAPI</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Mobile / Embedded</div>
+        <div class="skill-items"><span class="pill">Flutter</span><span class="pill">Arduino (C++)</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Databases</div>
+        <div class="skill-items"><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">PostgreSQL</span><span class="pill">SQLite</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">AI &amp; Tools</div>
+        <div class="skill-items"><span class="pill">Ollama</span><span class="pill">Piper TTS</span><span class="pill">Linux</span><span class="pill">Git</span><span class="pill">GitHub</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">MS Office</div>
+        <div class="skill-items"><span class="pill">Excel</span><span class="pill">Word</span><span class="pill">PowerPoint</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Communication</div>
+        <div class="skill-items"><span class="pill">English (spoken &amp; written)</span><span class="pill">Report writing</span><span class="pill">Presentations</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Professional</div>
+        <div class="skill-items"><span class="pill">Team collaboration</span><span class="pill">Time management</span><span class="pill">Problem solving</span><span class="pill">Attention to detail</span><span class="pill">Quick learning</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="dot"></span>Additional Experience</h2>
+    <div class="two">
+      <div class="plain">
+        <ul>
+          <li>Currently exploring Android Studio and additional web development projects.</li>
+          <li>Active GitHub contributor with activity in AI and Python projects.</li>
+          <li>Comfortable preparing professional reports, presentations and data summaries using MS Office.</li>
+        </ul>
+      </div>
+      <div class="plain">
+        <ul>
+          <li>Able to communicate clearly with teams and prepare structured documents.</li>
+          <li>Disciplined, detail-oriented and adaptable to new tools and processes.</li>
+          <li>Building in public while preparing for a Master's in Germany.</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/Ayanabbas2006" target="_blank" rel="noreferrer">GitHub &middot; Ayanabbas2006</a>
+          <a href="https://github.com/mojizatoffice-sys" target="_blank" rel="noreferrer">GitHub &middot; mojizatoffice-sys</a>
+          <a href="https://northpeak-digital-nu.vercel.app/" target="_blank" rel="noreferrer">Live demo &middot; NorthPeak</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Mohammad Mojiz Abbas &middot; Ghaziabad, Uttar Pradesh &middot;
+  <a href="mailto:mojiz.atoffice@gmail.com" style="color:#a3a3a3">mojiz.atoffice@gmail.com</a> &middot;
+  +91-8178546915
+</footer>
+
+</body>
+</html>
